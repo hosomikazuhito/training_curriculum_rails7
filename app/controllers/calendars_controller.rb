@@ -28,7 +28,7 @@ class CalendarsController < ApplicationController
 
     @week_days = []
 
-    plans = Plan.where(date: @todays_date..@todays_date + 7)
+    plans = Plan.where(date: @todays_date..@todays_date + 6)
 
     7.times do |x|
       today_plans = []
@@ -37,6 +37,7 @@ class CalendarsController < ApplicationController
       end
       wday_num = (@todays_date + x).wday
       wday_name = wdays[wday_num]
+      wday_index = wday_num % 7
       days = { month: (@todays_date + x).month, date: (@todays_date + x).day, plans: today_plans, wday: wday_name }
       @week_days.push(days)
     end
